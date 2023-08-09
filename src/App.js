@@ -1,24 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react'
+import TaskItem from './components/TaskItem';
 
-function App() {
+const App = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [tasks, setTasks] = useState(
+    [
+      {
+        id: '1',
+        description: 'study',
+        isCompleted: false
+      },
+      {
+        id: '2',
+        description: 'work',
+        isCompleted: true
+      },
+      {
+        id: '3',
+        description: 'gym',
+        isCompleted: true
+      },
+      {
+        id: '4',
+        description: 'shower',
+        isCompleted: false
+      },
+      {
+        id: '5',
+        description: 'sleep',
+        isCompleted: false
+      }
+    ]
+  )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {tasks.map((task) => (
+        <TaskItem key={task.id} task={task} />
+      ))}
+    </>
   );
 }
 
