@@ -1,9 +1,16 @@
 import './App.css';
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import TaskItem from './components/TaskItem';
 
 const App = () => {
-  // eslint-disable-next-line no-unused-vars
+  const mounted = useRef(false)
+  useEffect(() => {
+    if (mounted.current === false) {
+      mounted.current = true
+    } else {
+      console.log('component was updated!')
+    }
+  })
   const [tasks, setTasks] = useState(
     [
       {
@@ -34,11 +41,15 @@ const App = () => {
     ]
   )
 
+  const handleClaenTasks = () => {
+    setTasks([])
+  }
   return (
     <>
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}
+      <button onClick={handleClaenTasks}>Limpar tarefas</button>
     </>
   );
 }
